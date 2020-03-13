@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Отправка данных</title>
+    <script type="text/javascript">
+        function createUser() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "api/create/new/user");
+            xhr.setRequestHeader("Content-type", "application/json");
+            xhr.onload = (e) => {
+                alert("Получен ответ" + e.target.response)
+            };
+            var user_name = document.getElementById("firstName").value;
+            var user_numberPhone = document.getElementById("numberPhone").value;
+            var params = {"name" : user_name, "numberPhone" : user_numberPhone};
+            xhr.send(JSON.stringify(params));
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <form onsubmit="createUser()">
+            <input type="text" id="firstName" placeholder="Введите имя">
+            <input type="date" id="birthday" placeholder="Введите дату рождения">
+            <input type="text" id="numberPhone" placeholder="Введите номер телефона">
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+</body>
+</html>

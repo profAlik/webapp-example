@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class DbSqlite implements InitializingBean {
     private Logger log = Logger.getLogger(getClass().getName());
 
-    private String dbPath = "webappp-example.db";
+    private static String dbPath = "webappp-example.db";
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -53,6 +53,19 @@ public class DbSqlite implements InitializingBean {
         } catch (SQLException ex) {
             log.log(Level.WARNING, "Не удалось выполнить запрос", ex);
             return new User();
+        }
+    }
+
+    public Boolean createNewUser(User user) {
+        String query = "insert into USER (name, phone_number, birthday) values ('"
+                + user.getName() + "','" + user.getNumberPhone() + "','" + "2019-10-10" + "');";
+        System.out.println(query);
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + dbPath)) {
+            Statement stat = conn.createStatement();
+            return stat.execute(query);
+        } catch (SQLException ex) {
+            log.log(Level.WARNING, "Не удалось выполнить запрос", ex);
+            return false;
         }
     }
 }
