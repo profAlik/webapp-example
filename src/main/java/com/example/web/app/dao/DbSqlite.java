@@ -58,8 +58,7 @@ public class DbSqlite implements InitializingBean {
 
     public Boolean createNewUser(User user) {
         String query = "insert into USER (name, phone_number, birthday) values ('"
-                + user.getName() + "','" + user.getNumberPhone() + "','" + "2019-10-10" + "');";
-        System.out.println(query);
+                + user.getName() + "','" + user.getNumberPhone() + "','" + user.getTimeOfBirthday() + "');";
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + dbPath)) {
             Statement stat = conn.createStatement();
             return stat.execute(query);

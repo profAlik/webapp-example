@@ -13,18 +13,24 @@
             };
             var user_name = document.getElementById("firstName").value;
             var user_numberPhone = document.getElementById("numberPhone").value;
-            var params = {"name" : user_name, "numberPhone" : user_numberPhone};
+            var user_birthday = document.getElementById("birthday").value;
+            var params = {
+                "name" : user_name,
+                "numberPhone" : user_numberPhone,
+                "birthday" : user_birthday
+            };
             xhr.send(JSON.stringify(params));
         }
     </script>
 </head>
 <body>
     <div>
+        <p>Добавление нового пользователя</p>
         <form onsubmit="createUser()">
             <input type="text" id="firstName" placeholder="Введите имя">
             <input type="date" id="birthday" placeholder="Введите дату рождения">
             <input type="text" id="numberPhone" placeholder="Введите номер телефона">
-            <button type="submit">Отправить</button>
+            <button type="submit">Добавить</button>
         </form>
     </div>
 </body>

@@ -39,4 +39,8 @@ public class User {
     public void setNumberPhone(String numberPhone) {
         this.numberPhone = numberPhone;
     }
+
+    public Long getTimeOfBirthday() {
+        return birthday.getTime();
+    }
 }
