@@ -49,6 +49,9 @@ public class DbSqlite implements InitializingBean {
             user.setBirthday(resultSet.getDate("birthday"));
             user.setName(resultSet.getString("name"));
             user.setNumberPhone(resultSet.getString("phone_number"));
+            user.setAbout(resultSet.getString("about"));
+            user.setHobby(resultSet.getString("hobby"));
+            user.setVk(resultSet.getString("vk"));
             return user;
         } catch (SQLException ex) {
             log.log(Level.WARNING, "Не удалось выполнить запрос", ex);
@@ -57,14 +60,25 @@ public class DbSqlite implements InitializingBean {
     }
 
     public Boolean createNewUser(User user) {
-        String query = "insert into USER (name, phone_number, birthday) values ('"
-                + user.getName() + "','" + user.getNumberPhone() + "','" + user.getTimeOfBirthday() + "');";
+        String query = "insert into USER (name, phone_number, birthday, vk, about, hobby) " +
+                "values ('"
+                + user.getName() + "','"
+                + user.getNumberPhone() + "','"
+                + user.getTimeOfBirthday() + "','"
+                + user.getVk() + "','"
+                + user.getAbout() + "','"
+                + user.getHobby()
+                + "');";
+        System.out.println(query);
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + dbPath)) {
             Statement stat = conn.createStatement();
-            return stat.execute(query);
+            Boolean bool = stat.execute(query);
+            System.out.println(bool);
+            return bool;
         } catch (SQLException ex) {
             log.log(Level.WARNING, "Не удалось выполнить запрос", ex);
             return false;
         }
     }
+
 }

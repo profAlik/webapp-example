@@ -5,8 +5,35 @@ import java.util.Date;
 public class User {
     private Integer id;
     private String name;
-    private Date birthday;
     private String numberPhone;
+    private Date birthday;
+    private String vk;
+    private String about;
+    private String hobby;
+
+    public void setVk(String vk) {
+        this.vk = vk;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+    public void setHobby(String hobby) {
+        this.hobby = hobby;
+    }
+
+    public String getVk() {
+        return vk;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public String getHobby() {
+        return hobby;
+    }
 
     public Integer getId() {
         return id;

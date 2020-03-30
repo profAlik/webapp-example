@@ -3,35 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Отправка данных</title>
-    <script type="text/javascript">
-        function createUser() {
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "api/create/new/user");
-            xhr.setRequestHeader("Content-type", "application/json");
-            xhr.onload = (e) => {
-                alert("Получен ответ" + e.target.response)
-            };
-            var user_name = document.getElementById("firstName").value;
-            var user_numberPhone = document.getElementById("numberPhone").value;
-            var user_birthday = document.getElementById("birthday").value;
-            var params = {
-                "name" : user_name,
-                "numberPhone" : user_numberPhone,
-                "birthday" : user_birthday
-            };
-            xhr.send(JSON.stringify(params));
-        }
-    </script>
+    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="css/sendingData.css"/>
 </head>
 <body>
-    <div>
+    <div class="register">
         <p>Добавление нового пользователя</p>
-        <form onsubmit="createUser()">
-            <input type="text" id="firstName" placeholder="Введите имя">
-            <input type="date" id="birthday" placeholder="Введите дату рождения">
-            <input type="text" id="numberPhone" placeholder="Введите номер телефона">
+        <form id="register_form" onsubmit="createUser()">
+            <input type="text" id="input_name" placeholder="Имя"><br>
+            <input type="text" id="input_numberPhone" placeholder="Номер телефона"><br>
+            <input type="date" id="input_birthday" placeholder="Дата рождения"><br>
+            <input type="text" id="input_vk" placeholder="Ссылка на Вконтакте"><br>
+            <input type="text" id="input_about" placeholder="Информация о себе"><br>
+            <input type="text" id="input_hobby" placeholder="Хобби"><br>
             <button type="submit">Добавить</button>
         </form>
+        <br><input type="button" value="Обзор пользователей" style="font-size: 18px" onclick="window.location='usersOverview.html'">
     </div>
 </body>
 </html>

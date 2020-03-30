@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Обзор пользователей</title>
+    <link rel="stylesheet" href="css/usersOverview.css"/>
+    <script src="js/script.js"></script>
+</head>
+<body>
+    <div class="user_data">
+        <p> ID пользователя: <nobr id="user_id">...</nobr>
+        <p> Имя: <nobr id="user_name">...</nobr>
+        <p> Номер телефона: <nobr id="user_numberPhone">...</nobr>
+        <p> Дата рождения: <nobr id="user_birthday">...</nobr>
+        <p> Ссылка на Вконтакте: <a href="" id="user_vk">...</a>
+        <p> Информация о себе: <nobr id="user_about">...</nobr>
+        <p> Хобби: <nobr id="user_hobby">...</nobr>
+        <div>
+            <input id="previous" type="button" onclick="getUser(2)" value="Предыдущий">
+            <label id="input_user_id">0</label>
+            <input id="next" type="button" onclick="getUser(1)" value="Следующий">
+        </div>
+        <br><input type="button" value="Регистрация" style="font-size: 18px" onclick="window.location='sendingData.html'">
+    </div>
+</body>
+</html>

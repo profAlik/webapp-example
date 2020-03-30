@@ -1,0 +1,16 @@
+body {
+    background-color: #ffffff;
+}
+
+p {
+    font-size: 20px;
+}
+
+nobr {
+   font-size: 20px;
+   color: grey;
+}
+
+.user_data {
+    margin: 20px 20px;
+}
