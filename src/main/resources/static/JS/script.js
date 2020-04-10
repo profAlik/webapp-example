@@ -18,18 +18,28 @@ function createUser() {
             "hobby" : user_hobby
         };
         xhr.send(JSON.stringify(params));
+        alert ('Регестрация прошла успешно!');
+        document.getElementById("input_numberPhone").value = "";
+        document.getElementById("input_birthday").value = "";
+        document.getElementById("input_vk").value = "";
+        document.getElementById("input_name").value = "";
+        document.getElementById("input_about").value = "";
+        document.getElementById("input_hobby").value = "";
     } else {
         if (!checkNonEmptyData()) {
             alert("Не все поля заполнены.")
         }
         if (!checkInputNumber()) {
             alert("Номер телефона не должен содержать букв.")
+            document.getElementById("input_numberPhone").value = "";
         }
         if (!checkInputBirth()) {
             alert("Неккоректная дата рождения.")
+            document.getElementById("input_birthday").value = "";
         }
         if (!checkInputVk()) {
             alert("Ссылка должна быть следующего вида: https://vk.com/user_id")
+            document.getElementById("input_vk").value = "";
         }
     }
 }
@@ -40,19 +50,31 @@ function getUser(switching) {
         xhr.setRequestHeader("Content-type", "application/json");
         xhr.responseType = "text";
 
-        if (switching == 1) {
-            var user_id = document.getElementById("input_user_id").textContent;
-            user_id++;
+        var xhr2 = new XMLHttpRequest();
+        xhr2.open("POST", "api/get/all/user/id");
+        xhr2.setRequestHeader("Content-type", "application/json");
+        xhr2.responseType = "text";
+        xhr2.send();
+        xhr2.onload = (e) => {
+            var userData = JSON.parse(e.target.response);
+            var temp;
+            if (switching === 1) {
+                var user_id = document.getElementById("input_user_id").textContent;
+                do {
+                    temp = userData.shift();
+                } while (user_id >= temp);
+            } else if (switching === 2) {
+                var user_id = document.getElementById("input_user_id").textContent;
+                do {
+                    temp = userData.pop();
+                } while (user_id <= temp);
+            }
+            user_id = temp;
             var params = {"id": user_id};
             xhr.send(JSON.stringify(params));
             document.getElementById("input_user_id").textContent = user_id;
-        } else if (switching == 2) {
-            var user_id = document.getElementById("input_user_id").textContent;
-            user_id--;
-            var params = {"id": user_id};
-            xhr.send(JSON.stringify(params));
-            document.getElementById("input_user_id").textContent = user_id;
-        }
+        };
+
         xhr.onload = (e) => {
             var userData = JSON.parse(e.target.response),
                 userDataId = userData.id,
@@ -64,12 +86,7 @@ function getUser(switching) {
                 userDataHobby = userData.hobby;
                 if (userDataId == null){
                     alert('Конец списка пользователей.');
-                    if (user_id > 0){
-                        user_id--;
-                    } else {
-                        user_id++;
-                    }
-                    document.getElementById("input_user_id").textContent = user_id;
+                    document.getElementById("input_user_id").textContent = "---";
                 } else {
                     document.getElementById("user_id").textContent = userDataId;
                     document.getElementById("user_name").textContent = userDataName;
@@ -111,9 +128,9 @@ function checkInputVk() {
 }
 
 function checkNonEmptyData() {
-    if (document.getElementById("input_name").value.trim() != "" ||
-        document.getElementById("input_about").value.trim() != "" ||
-        document.getElementById("input_hobby").value.trim() != "") {
+    if (document.getElementById("input_name").value.trim() !== "" &&
+        document.getElementById("input_about").value.trim() !== "" &&
+        document.getElementById("input_hobby").value.trim() !== "") {
         return true;
     }
 }

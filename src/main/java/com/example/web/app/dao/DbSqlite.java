@@ -5,6 +5,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -12,7 +14,7 @@ import java.util.logging.Logger;
 public class DbSqlite implements InitializingBean {
     private Logger log = Logger.getLogger(getClass().getName());
 
-    private static String dbPath = "webappp-example.db";
+    private String dbPath = "webappp-example.db";
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -59,25 +61,40 @@ public class DbSqlite implements InitializingBean {
         }
     }
 
-    public Boolean createNewUser(User user) {
-        String query = "insert into USER (name, phone_number, birthday, vk, about, hobby) " +
-                "values ('"
-                + user.getName() + "','"
-                + user.getNumberPhone() + "','"
-                + user.getTimeOfBirthday() + "','"
-                + user.getVk() + "','"
-                + user.getAbout() + "','"
-                + user.getHobby()
-                + "');";
-        System.out.println(query);
+    public Integer createNewUser(User user) {
+        StringBuilder query = new StringBuilder();
+        query.append("insert into USER (name, phone_number, birthday, vk, about, hobby) ")
+                .append("values ('")
+                .append(user.getName()).append("','")
+                .append(user.getNumberPhone()).append("','")
+                .append(user.getTimeOfBirthday()).append("','")
+                .append(user.getVk()).append("','")
+                .append(user.getAbout()).append("','")
+                .append(user.getHobby())
+                .append("');");
+        log.info(query.toString());
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + dbPath)) {
             Statement stat = conn.createStatement();
-            Boolean bool = stat.execute(query);
-            System.out.println(bool);
-            return bool;
+            return stat.executeUpdate(query.toString());
         } catch (SQLException ex) {
             log.log(Level.WARNING, "Не удалось выполнить запрос", ex);
-            return false;
+            return null;
+        }
+    }
+
+    public List<Integer> getAllUserID () {
+        String query = "SELECT ID FROM USER";
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + dbPath)) {
+            Statement stat = conn.createStatement();
+            ResultSet resultSet = stat.executeQuery(query);
+            List<Integer> list_id = new ArrayList<>();
+            while (resultSet.next()) {
+                list_id.add(resultSet.getInt("ID"));
+            }
+            return list_id;
+        } catch (SQLException ex) {
+            log.log(Level.WARNING, "Не удалось выполнить запрос", ex);
+            return null;
         }
     }
 

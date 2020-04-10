@@ -9,14 +9,14 @@
 <body>
     <div class="register">
         <p>Добавление нового пользователя</p>
-        <form id="register_form" onsubmit="createUser()">
-            <input type="text" id="input_name" placeholder="Имя"><br>
+        <form id="register_form">
+            <input type="text" id="input_name" placeholder="Имя пользователя"><br>
             <input type="text" id="input_numberPhone" placeholder="Номер телефона"><br>
             <input type="date" id="input_birthday" placeholder="Дата рождения"><br>
             <input type="text" id="input_vk" placeholder="Ссылка на Вконтакте"><br>
             <input type="text" id="input_about" placeholder="Информация о себе"><br>
             <input type="text" id="input_hobby" placeholder="Хобби"><br>
-            <button type="submit">Добавить</button>
+            <button type="button" onClick="createUser()">Добавить</button>
         </form>
         <br><input type="button" value="Обзор пользователей" style="font-size: 18px" onclick="window.location='usersOverview.html'">
     </div>
