@@ -1,16 +1,39 @@
 body {
-    background-color: #ffffff;
+    background: url("../images/bg.jpg");
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 p {
     font-size: 20px;
+    color: white;
 }
 
-nobr {
+h1 {
+    font-size: 26px;
+    color: white;
+}
+
+#user_name {
+    font-size: 30px;
+    color: white;
+    margin-left: 15px;
+}
+
+#user_id, #user_numberPhone, #user_birthday, #user_about, #user_hobby, #input_user_id {
    font-size: 20px;
-   color: grey;
+   color: rgb(190, 190, 190);
 }
 
 .user_data {
     margin: 20px 20px;
+}
+
+#vk {
+	height: 25px;
+}
+
+.user_data {
+    margin-top: 40px;
+    margin-left: 40px;
 }

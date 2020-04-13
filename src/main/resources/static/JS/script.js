@@ -93,7 +93,6 @@ function getUser(switching) {
                     document.getElementById("user_numberPhone").textContent = userDataNumber;
                     document.getElementById("user_birthday").textContent = userDataBirth;
                     document.getElementById("user_vk").href = userDataVk;
-                    document.getElementById("user_vk").textContent = userDataVk;
                     document.getElementById("user_about").textContent = userDataAbout;
                     document.getElementById("user_hobby").textContent = userDataHobby;
             }

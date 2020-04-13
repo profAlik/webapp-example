@@ -8,19 +8,27 @@
 </head>
 <body>
     <div class="user_data">
-        <p> ID пользователя: <nobr id="user_id">...</nobr>
-        <p> Имя пользователя: <nobr id="user_name">...</nobr>
-        <p> Номер телефона: <nobr id="user_numberPhone">...</nobr>
-        <p> Дата рождения: <nobr id="user_birthday">...</nobr>
-        <p> Ссылка на Вконтакте: <a href="" id="user_vk">...</a>
-        <p> Информация о себе: <nobr id="user_about">...</nobr>
-        <p> Хобби: <nobr id="user_hobby">...</nobr>
-        <div>
+        <div id="head">
+            <a href="" id="user_vk"><img id="vk" src="images/vk.png"></a>
+            <nobr id="user_name">...</nobr>
+        </div>
+        <div id="middle">
+            <p> ID пользователя: <nobr id="user_id">...</nobr>
+            <p> Номер телефона: <nobr id="user_numberPhone">...</nobr>
+            <p> Дата рождения: <nobr id="user_birthday">...</nobr>
+        </div>
+        <div id="middle_about">
+            <h1>Информация о пользователе</h1>
+            <p id="user_about">...</p>
+            <h1>Хобби</h1>
+            <p id="user_hobby">...</p>
+        </div>
+        <div id="bottom">
             <input id="previous" type="button" onclick="getUser(2)" value="Предыдущий">
             <label id="input_user_id">0</label>
             <input id="next" type="button" onclick="getUser(1)" value="Следующий">
+            <br><br><input type="button" value="Регистрация" style="font-size: 18px" onclick="window.location='sendingData.html'">
         </div>
-        <br><input type="button" value="Регистрация" style="font-size: 18px" onclick="window.location='sendingData.html'">
     </div>
 </body>
 </html>
