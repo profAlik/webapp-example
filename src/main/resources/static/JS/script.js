@@ -120,7 +120,7 @@ function checkInputBirth() {
 
 function checkInputVk() {
     var vkRegex = new RegExp("^https:\/\/vk\.com\/.*");
-    var user_vk = document.getElementById("input_vk").value;
+    var user_vk = document.getElementById("input_vk").value.trim();
     if (vkRegex.test(user_vk)) {
         return true;
     }
